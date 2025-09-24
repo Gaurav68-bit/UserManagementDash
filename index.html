@@ -1,0 +1,131 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Users Management Dashboard</title>
+  <link rel="stylesheet" href="styles.css">
+  <script src="./script.js" defer></script>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div>
+        <h1>User Management System</h1>
+        <p>View, add, edit, and delete users (JSONPlaceholder demo)</p>
+      </div>
+      <div class="controls">
+        <div class="search panel" style="padding:8px;">
+          <input id="searchInput" type="text" placeholder="Search (name, email, department)..." />
+          <button id="filterBtn" class="btn secondary">Filters</button>
+          <button id="clearFilters" class="btn ghost">Clear</button>
+        </div>
+        <div class="panel" style="display:flex;gap:8px;align-items:center">
+          <label class="small">Per page</label>
+          <select id="perPageSelect">
+            <option value="10">10</option>
+            <option value="25">25</option>
+            <option value="50">50</option>
+            <option value="100">100</option>
+          </select>
+        </div>
+        <button id="addBtn" class="btn">+ Add</button>
+      </div>
+    </header>
+
+    <div id="errorBanner" style="display:none" class="notice"></div>
+
+    <div class="panel">
+      <div class="table-wrap" id="tableWrap">
+        <table id="usersTable" aria-describedby="table-desc">
+          <thead>
+            <tr>
+              <th class="sortable" data-key="id">ID <span class="sort-ind">↕</span></th>
+              <th class="sortable" data-key="first">First Name <span class="sort-ind">↕</span></th>
+              <th class="sortable" data-key="last">Last Name <span class="sort-ind">↕</span></th>
+              <th class="sortable" data-key="email">Email <span class="sort-ind">↕</span></th>
+              <th class="sortable" data-key="department">Department <span class="sort-ind">↕</span></th>
+              <th>Actions</th>
+            </tr>
+          </thead>
+          <tbody id="tbody">
+            rows injected here
+          </tbody>
+        </table>
+      </div>
+
+      <div class="paginator">
+        <div class="small" id="rowsInfo">Showing 0 of 0</div>
+        <div class="page-controls">
+          <button id="prevBtn" class="btn secondary">Prev</button>
+          <div class="small" id="pageInfo">Page 1 / 1</div>
+          <button id="nextBtn" class="btn secondary">Next</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Filter modal -->
+   <div id="filterModal" style="display:none" class="modal-backdrop" aria-hidden="true">
+    <div class="modal">
+      <h3>Filters</h3>
+      <div class="grid" style="margin-top:8px">
+        <div>
+          <label>First name</label>
+          <input id="filterFirst" type="text" placeholder="First name" />
+        </div>
+        <div>
+          <label>Last name</label>
+          <input id="filterLast" type="text" placeholder="Last name" />
+        </div>
+        <div>
+          <label>Email</label>
+          <input id="filterEmail" type="text" placeholder="Email" />
+        </div>
+        <div>
+          <label>Department</label>
+          <input id="filterDept" type="text" placeholder="Department" />
+        </div>
+      </div>
+      <div style="margin-top:12px;text-align:right">
+        <button id="applyFilters" class="btn">Apply</button>
+        <button id="closeFilters" class="btn secondary">Close</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Add/Edit modal -->
+  <div id="editModal" style="display:none" class="modal-backdrop" aria-hidden="true">
+    <div class="modal">
+      <h3 id="editTitle">Add User</h3>
+      <div id="formError" style="display:none" class="error"></div>
+      <form id="userForm">
+        <div class="grid">
+          <div>
+            <label>First Name</label>
+            <input id="firstName" name="firstName" type="text" />
+          </div>
+          <div>
+            <label>Last Name</label>
+            <input id="lastName" name="lastName" type="text" />
+          </div>
+          <div>
+            <label>Email</label>
+            <input id="email" name="email" type="email" />
+          </div>
+          <div>
+            <label>Department</label>
+            <input id="department" name="department" type="text" placeholder="Company or department" />
+          </div>
+        </div>
+        <div style="margin-top:12px;text-align:right">
+          <button type="button" id="cancelEdit" class="btn secondary">Cancel</button>
+          <button type="submit" id="saveBtn" class="btn">Save</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+
+</body>
+</html>
